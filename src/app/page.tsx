@@ -152,7 +152,7 @@ export default function HomePage() {
                   </div>
                 </>
               ) : (
-                <div className="text-center" style={{ color: 'white', padding: '60px 0' }}>
+                <div className="text-center" style={{ color: 'white', padding: '60px 0 ' }}>
                   <h3 style={{ fontSize: '24px', marginBottom: '16px' }}>ไม่พบลวดลายที่ค้นหา</h3>
                   <p style={{ fontSize: '16px', opacity: 0.8 }}>ลองเปลี่ยนคำค้นหาหรือสร้างลวดลายใหม่</p>
                 </div>
