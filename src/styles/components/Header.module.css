@@ -1,0 +1,105 @@
+.header {
+  background: transparent;
+  color: white;
+  padding: 20px 0 60px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logoText {
+  color: #6c5ce7;
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  gap: 30px;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #a29bfe;
+}
+
+.userActions {
+  display: flex;
+  gap: 15px;
+}
+
+.iconButton {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.iconButton:hover {
+  color: #a29bfe;
+}
+
+.heroSection {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  color: #74b9ff;
+  font-size: 48px;
+}
+
+.description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .navLinks {
+    order: 2;
+  }
+  
+  .userActions {
+    order: 1;
+  }
+  
+  .title {
+    font-size: 32px;
+  }
+  
+  .subtitle {
+    font-size: 32px;
+  }
+}
