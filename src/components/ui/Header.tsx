@@ -15,7 +15,7 @@ export default function Header({ title, subtitle, description }: HeaderProps) {
       <div className="container">
         <nav className={styles.nav}>
           <div className={styles.logo}>
-            <span className={styles.logoText}>Khram</span>
+            <span className={styles.logoText}>Kram</span>
           </div>
           <div className={styles.navLinks}>
             <a href="#" className={styles.navLink}>หน้าแรก</a>
@@ -23,7 +23,7 @@ export default function Header({ title, subtitle, description }: HeaderProps) {
             <a href="#" className={styles.navLink}>ติดต่อ</a>
           </div>
           <div className={styles.userActions}>
-            <button className={styles.iconButton}>♥ รายการโปรด</button>
+            <button className={styles.iconButton}>❤️ รายการโปรด</button>
             <button className={styles.iconButton}>👤 เข้าสู่ระบบ</button>
           </div>
         </nav>
