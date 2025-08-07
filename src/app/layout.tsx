@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import Header from '@/components/ui/Header';
 
 export const metadata: Metadata = {
   title: 'Khram - ค้นพบและสร้างสรรค์ลวดลายผ้าครามไทย',
@@ -21,7 +22,13 @@ export default function RootLayout({
           rel="stylesheet" 
         />
       </head>
-      <body>{children}</body>
+      <body>
+         <Header 
+        title="ค้นพบและสร้างสรรค์"
+        subtitle="ลวดลายผ้าครามไทย"
+        description="เก็บรักษาข้อมูลลวดลายผ้าครามดั้งเดิม และสร้างลายใหม่ด้วยเทคโนโลยี AI"
+      />
+      {children}</body>
     </html>
   );
 }

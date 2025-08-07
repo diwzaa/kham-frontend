@@ -87,25 +87,6 @@ export default function HomePage() {
     );
   };
 
-  const handleAIGenerate = async (prompt: string, tags: string[]) => {
-    // Simulate AI generation
-    const aiPattern: Pattern = {
-      id: `ai_${Date.now()}`,
-      name: `AI Generated Pattern`,
-      category: 'ลายสร้างด้วย AI',
-      imageUrl: `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0idGhhaVBhdHRlcm4iIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMWU3NGJhIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iOCIgZmlsbD0iI2ZmZiIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCN0aGFpUGF0dGVybikiLz48L3N2Zz4=`,
-      description: `Generated from prompt: ${prompt}`,
-      tags: [...tags, 'AI Generated'],
-      likes: 0,
-      isFavorite: false
-    };
-
-    setPatterns(prev => [aiPattern, ...prev]);
-    setFilteredPatterns(prev => [aiPattern, ...prev]);
-    setShowAISection(false);
-    setCurrentView('gallery');
-  };
-
   const handleShowAI = () => {
     setShowAISection(true);
     setCurrentView('ai');
@@ -118,11 +99,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <Header 
-        title="ค้นพบและสร้างสรรค์"
-        subtitle="ลวดลายผ้าครามไทย"
-        description="เก็บรักษาข้อมูลลวดลายผ้าครามดั้งเดิม และสร้างลายใหม่ด้วยเทคโนโลยี AI"
-      />
+     
 
       {currentView === 'gallery' && (
         <>
@@ -164,7 +141,6 @@ export default function HomePage() {
 
       {currentView === 'ai' && (
         <AIPromptSection 
-          onGenerate={handleAIGenerate}
           onClose={handleBackToGallery}
         />
       )}

@@ -1,38 +1,55 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Button from './Button';
-import styles from '@/styles/components/AIPromptSection.module.css';
+import React, { useState } from "react";
+import Button from "./Button";
+import styles from "@/styles/components/AIPromptSection.module.css";
+import Image from "next/image";
 
 interface AIPromptSectionProps {
-  onGenerate: (prompt: string, tags: string[]) => void;
   onClose: () => void;
 }
 
-export default function AIPromptSection({ onGenerate, onClose }: AIPromptSectionProps) {
-  const [prompt, setPrompt] = useState('');
+const SubmitHandler = async (prompt: string) => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/gen-image`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userInput: prompt }),
+    });
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error submitting prompt:", error);
+  }
+};
+
+export default function AIPromptSection({ onClose }: AIPromptSectionProps) {
+  const [prompt, setPrompt] = useState("");
+  const [genImageUrl, setGenImageUrl] = useState<string | undefined>();
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  const predefinedTags = ['tag 1', 'tag 2', 'tag 3', 'tag 4'];
+  const predefinedTags = ["tag 1", "tag 2", "tag 3", "tag 4"];
 
   const toggleTag = (tag: string) => {
-    setSelectedTags(prev => 
-      prev.includes(tag) 
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
 
   const handleGenerate = async () => {
     if (!prompt.trim()) return;
-    
+
     setIsGenerating(true);
     try {
-      await onGenerate(prompt, selectedTags);
-      setPrompt('');
-      setSelectedTags([]);
+      const data = await SubmitHandler(prompt);
+      setGenImageUrl(data.image_url);
     } finally {
+      setSelectedTags([]);
+      setPrompt("");
       setIsGenerating(false);
     }
   };
@@ -50,7 +67,8 @@ export default function AIPromptSection({ onGenerate, onClose }: AIPromptSection
 
           <div className={styles.promptArea}>
             <label className={styles.label}>
-              อธิบายลายที่ต้องการ เช่น "ลายกนกท้องลาย เป็น ลายงามความคิดขนาดใหญ่ ใช้งานจัดพิมพ์"
+              อธิบายลายที่ต้องการ เช่น "ลายกนกท้องลาย เป็น ลายงามความคิดขนาดใหญ่
+              ใช้งานจัดพิมพ์"
             </label>
             <textarea
               value={prompt}
@@ -67,7 +85,9 @@ export default function AIPromptSection({ onGenerate, onClose }: AIPromptSection
               {predefinedTags.map((tag, index) => (
                 <button
                   key={index}
-                  className={`${styles.tag} ${selectedTags.includes(tag) ? styles.tagActive : ''}`}
+                  className={`${styles.tag} ${
+                    selectedTags.includes(tag) ? styles.tagActive : ""
+                  }`}
                   onClick={() => toggleTag(tag)}
                 >
                   {tag}
@@ -75,15 +95,25 @@ export default function AIPromptSection({ onGenerate, onClose }: AIPromptSection
               ))}
             </div>
           </div>
+          <div>
+            {!genImageUrl && (
+              <Image
+                alt="AI image"
+                src={genImageUrl ?? "https://placehold.net/600x600.png"}
+                width={400}
+                height={400}
+              />
+            )}
+          </div>
 
           <div className={styles.actions}>
-            <Button 
+            <Button
               onClick={handleGenerate}
               disabled={!prompt.trim() || isGenerating}
               size="large"
               fullWidth
             >
-              {isGenerating ? '🎨 กำลังสร้าง...' : '✨ สร้างลายด้วย AI'}
+              {isGenerating ? "🎨 กำลังสร้าง..." : "✨ สร้างลายด้วย AI"}
             </Button>
           </div>
 
@@ -98,10 +128,12 @@ export default function AIPromptSection({ onGenerate, onClose }: AIPromptSection
                   <p className={styles.exampleText}>
                     สปรมซายครามไทยยมดิ้นเงป้น วิลา่านเทาไปมาใครข
                   </p>
-                  <Button 
-                    variant="secondary" 
+                  <Button
+                    variant="secondary"
                     size="small"
-                    onClick={() => {/* Handle example selection */}}
+                    onClick={() => {
+                      /* Handle example selection */
+                    }}
                   >
                     บันทึกขื้อมูล
                   </Button>
