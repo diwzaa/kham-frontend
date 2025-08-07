@@ -1,0 +1,28 @@
+# Byte-compiled / compiled files
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+
+# Virtual environment
+venv/
+env/
+*.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDE / Editor directories
+.vscode/
+.idea/
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs & Debug files
+logs/
+*.log
+*.out
+
+# FastAPI / Uvic
