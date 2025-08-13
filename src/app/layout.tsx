@@ -23,10 +23,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-         <Header 
+    <Header 
         title="ค้นพบและสร้างสรรค์"
         subtitle="ลวดลายผ้าครามไทย"
-        description="เก็บรักษาข้อมูลลวดลายผ้าครามดั้งเดิม และสร้างลายใหม่ด้วยเทคโนโลยี AI"
+        description="เก็บข้อมูลลวดลายผ้าครามดั้งเดิม และสร้างลายใหม่ด้วยเทคโนโลยี AI"
       />
       {children}</body>
     </html>
