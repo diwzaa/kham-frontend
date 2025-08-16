@@ -5,10 +5,13 @@
 }
 
 .nav {
+  background-color: #ffffff1a;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
+  padding: 7px;
+  border-radius: 45px;
 }
 
 .logo {
